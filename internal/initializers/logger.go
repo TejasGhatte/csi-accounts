@@ -26,12 +26,9 @@ const (
 )
 
 var logFiles struct {
-	DebugLogFile *os.File
 	InfoLogFile  *os.File
 	WarnLogFile  *os.File
 	ErrorLogFile *os.File
-	PanicLogFile *os.File
-	FatalLogFile *os.File
 }
 
 type LoggerTypes struct {
