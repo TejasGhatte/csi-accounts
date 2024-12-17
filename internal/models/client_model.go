@@ -12,7 +12,7 @@ type Client struct {
 	Name         string         `gorm:"type:text;not null" json:"name"`
 	Description  string         `gorm:"type:text" json:"description"`
 	RedirectURIs pq.StringArray `gorm:"type:text[]" json:"redirectURIs"`
-	Scopes       pq.StringArray `gorm:"type:text[]" json:"scopes"`
+	ClientScopes []ClientScope  `gorm:"foreignKey:ClientID" json:"clientScopes"`
 	ClientID     string         `gorm:"type:text;unique;not null" json:"clientID"`
 	ClientSecret string         `gorm:"type:text;unique;not null" json:"clientSecret"`
 	CreatedAt    time.Time      `gorm:"default:current_timestamp" json:"createdAt"`
