@@ -43,7 +43,7 @@ require (
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/gin-gonic/gin v1.10.0
-	github.com/google/uuid v1.5.0
+	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/lib/pq v1.10.9
