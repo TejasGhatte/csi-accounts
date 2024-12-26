@@ -5,5 +5,5 @@ import (
 )
 
 func SetUp(app *fiber.App) {
-	
+	EventRouter(app)
 }
