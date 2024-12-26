@@ -13,4 +13,5 @@ func EventRouter(app *fiber.App) {
 	eventRouter.Get("/:eventID", controllers.GetEvent)
 	eventRouter.Post("/", controllers.CreateEvent)
 	eventRouter.Patch("/:eventID", controllers.UpdateEvent)
+	eventRouter.Delete("/:eventID", controllers.DeleteEvent)
 }

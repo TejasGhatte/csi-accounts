@@ -153,3 +153,25 @@ func UpdateEvent(c *fiber.Ctx) error {
 		"event": event,
 	})
 }
+
+func DeleteEvent(c *fiber.Ctx) error {
+	parsedEventID, _ := uuid.Parse(c.Params("eventID"))
+	parsedLoggedInUserID, _ := uuid.Parse(c.GetRespHeader("loggedInUserID"))
+
+	var eventMemership models.EventMembership
+	if err := initializers.DB.Where("event_id = ? AND user_id = ? AND role = ?", parsedEventID, parsedLoggedInUserID, models.Admin).First(&eventMemership).Error; err != nil {
+		if err == gorm.ErrRecordNotFound{
+			return &fiber.Error{Code: 400, Message: "You are not an admin of this event"}
+		}
+		return helpers.AppError{Code:500, Message: config.DATABASE_ERROR, LogMessage: err.Error(), Err: err}
+	}
+
+	if err := initializers.DB.Delete(&models.Event{}, "id = ?", parsedEventID).Error; err != nil {
+		return helpers.AppError{Code:500, Message: config.DATABASE_ERROR, LogMessage: err.Error(), Err: err}
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"status": "success",
+		"message": "Event Deleted",
+	})
+}
