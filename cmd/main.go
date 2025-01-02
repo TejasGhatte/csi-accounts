@@ -15,6 +15,11 @@ func init() {
 	initializers.RunMigrations()
 	initializers.CustomZerologLogger()
 }
+/*func SetUpRoutes(app *fiber.App)
+{
+	app.Get("/api",welcome)
+	app.Post("/api/users",routes.createUser)
+}*/
 func main() {
 
 	app := fiber.New(fiber.Config{

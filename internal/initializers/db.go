@@ -13,7 +13,7 @@ var DB *gorm.DB
 func ConnectToDB() {
 	var err error
 
-	dsn := fmt.Sprintf(CONFIG.DB_URL)
+	dsn := fmt.Sprintf("%s", CONFIG.DB_URL)
 
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
